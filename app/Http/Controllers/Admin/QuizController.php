@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Http\Requests\QuizCreateRequest;
+use App\Http\Requests\QuizUpdateRequest;
 
 class QuizController extends Controller
 {
@@ -38,7 +39,8 @@ class QuizController extends Controller
      */
     public function store(QuizCreateRequest $request)
     {
-        
+        Quiz::create($request->post());
+        return redirect()->route('quizzes.index')->withSuccess('Quiz has been successfully created!');
     }
 
     /**
@@ -60,7 +62,8 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quiz = Quiz::find($id) ?? abort(404, "There is no information about the searched 'Quiz'!");
+        return view('admin.quiz.edit', compact('quiz'));
     }
 
     /**
@@ -70,9 +73,11 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuizUpdateRequest $request, $id)
     {
-        //
+        $quiz = Quiz::find($id) ?? abort(404, "There is no information about the searched 'Quiz'!");
+        Quiz::where('id', $id)->update(request()->except(['_method', '_token']));
+        return redirect()->route('quizzes.index')->withSuccess('Quiz has been successfully updated!');
     }
 
     /**
