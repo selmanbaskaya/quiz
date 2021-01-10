@@ -3,6 +3,8 @@
         Add Quiz
     </x-slot>
 
+    
+
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
@@ -10,7 +12,7 @@
                     @csrf
                     <div class="form-group">
                         <label>Quiz Title</label>
-                        <input type="text" name="title" class="form-control" required>
+                        <input type="text" name="title" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Quiz Description</label>
