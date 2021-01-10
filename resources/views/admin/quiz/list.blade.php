@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">
-                <a href="#" class="btn btn-sm btn-info">
+                <a href="{{ route('quizzes.create') }}" class="btn btn-sm btn-info">
                     <i class="fa fa-plus"></i>
                     Add Quiz
                 </a>

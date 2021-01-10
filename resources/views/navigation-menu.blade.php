@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        Home
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -91,6 +91,16 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            @if(auth()->user()->type == 'admin')
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                Admin Operations
+                            </div>
+
+                            <x-jet-dropdown-link href="{{ route('quizzes.index') }}">
+                                Quizzes
+                            </x-jet-dropdown-link>
+                            @endif
+
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}

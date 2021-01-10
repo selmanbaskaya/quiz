@@ -17,7 +17,7 @@ class CreateQuizzesTable extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description')->nullable();
-            $table->enum('status', ['publish', 'draft', 'passive'])->default('draft');
+            $table->enum('status', ['Published', 'Draft', 'Passive'])->default('Draft');
             $table->timestamp('finished_at')->nullable();
             $table->timestamps();
         });
