@@ -33,7 +33,7 @@
                             <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-sm btn-warning text-white">
                                 <i class="fa fa-pen"></i>    
                             </a>    
-                            <a href="{{ route('quizzes.destroy', $quiz->id) }}" class="btn btn-sm btn-danger ml-2">
+                            <a href="{{ route('quizzes.destroy', $quiz->id) }}" class="btn btn-sm btn-danger">
                                 <i class="fa fa-times"></i>    
                             </a>    
                         </td>

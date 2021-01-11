@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\QuizController;
-use App\Http\Controllers\Admin\;
+use App\Http\Controllers\Admin\QuestionController;
 
 Route::get('/', function () {
     return view('welcome');
