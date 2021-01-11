@@ -27,6 +27,9 @@
                         <td scope="row" class="text-center">{{ $quiz->status }}</td>
                         <td scope="row" class="text-center">{{ $quiz->finished_at }}</td>
                         <td scope="row" class="text-center">
+                            <a href="{{ route('questions.index', $quiz->id) }}" class="btn btn-sm btn-success">
+                                <i class="fa fa-question"></i>    
+                            </a>    
                             <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-sm btn-warning text-white">
                                 <i class="fa fa-pen"></i>    
                             </a>    
