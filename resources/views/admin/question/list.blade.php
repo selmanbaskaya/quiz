@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        Questions for quiz "{{ $quiz->title }}"
+        Questions for quiz '{{ $quiz->title }}'
     </x-slot>
 
     <div class="card">
