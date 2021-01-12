@@ -8,7 +8,7 @@
 </p>
 
 ## Project
-![](repo_img.png)
+![](add-question.gif)
 
 ## Install the dependencies
 ```bash
