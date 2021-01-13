@@ -35,7 +35,7 @@
                         <td scope="row" class="text-center">{{ $question->answer_4 }}</td>
                         <td scope="row" class="text-center text-success font-weight-bold">{{ substr($question->correct_answer, -1) }}. Answer</td>
                         <td scope="row" class="text-center"> 
-                            <a href="{{ route('quizzes.edit', $question->id) }}" class="btn btn-sm btn-warning text-white">
+                            <a href="{{ route('questions.edit', [$quiz->id, $question->id, ]) }}" class="btn btn-sm btn-warning text-white">
                                 <i class="fa fa-pen"></i>    
                             </a>    
                             <a href="{{ route('quizzes.destroy', $question->id) }}" class="btn btn-sm btn-danger">
