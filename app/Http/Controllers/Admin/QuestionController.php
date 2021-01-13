@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Http\Requests\QuestionCreateRequest;
+use App\Http\Requests\QuestionUpdateRequest;
 use Illuminate\Support\Str;
 
 class QuestionController extends Controller
@@ -83,9 +84,19 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionUpdateRequest $request, $quiz_id, $question_id)
     {
-        //
+        if($request->hasFile('image')) {
+            $filename = Str::slug($request->question) . '.' . $request->image->extension();
+            $filenameWithUpload = 'questions-image/'.$filename;
+            $request->image->move(public_path('questions-image'), $filename);
+            $request->merge([
+                'image'=>$filenameWithUpload
+            ]);
+        }
+        Quiz::find($quiz_id)->questions()->whereId($question_id)->first()->update($request->post());
+
+        return redirect()->route('questions.index', $quiz_id)->withSuccess('The question has been updated successfully!');
     }
 
     /**

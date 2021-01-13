@@ -28,7 +28,13 @@
                     @foreach ($quiz->questions as $question)
                     <tr>
                         <td scope="row">{{ $question->question }}</td>
-                        <td scope="row" class="text-center">{{ $question->image }}</td>
+                        <td scope="row" class="text-center">
+                            @if($question->image)
+                                <a href="{{ asset($question->image) }}" target="_blank" class="btn btn-sm btn-light">
+                                    View photo
+                                </a>
+                            @endif
+                        </td>
                         <td scope="row" class="text-center">{{ $question->answer_1 }}</td>
                         <td scope="row" class="text-center">{{ $question->answer_2 }}</td>
                         <td scope="row" class="text-center">{{ $question->answer_3 }}</td>

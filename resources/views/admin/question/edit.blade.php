@@ -15,9 +15,11 @@
                     </div>
                     <div class="form-group">
                         <label>Image</label>
-                        <a href="{{ asset($question->image) }}" target="_blabk">
-                            <img src="{{ asset($question->image) }}" class="img-responsive rounded mb-3" width="350" alt="">
-                        </a>
+                        @if($question->image)
+                            <a href="{{ asset($question->image) }}" target="_blank">
+                                <img src="{{ asset($question->image) }}" class="img-responsive rounded mb-3" width="350" alt="">
+                            </a>
+                        @endif
                         <input type="file" name="image" class="form-control">
                     </div>
                     <div class="row">
@@ -58,7 +60,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-block btn-success" type="submit">Create Question</button>
+                        <button class="btn btn-block btn-success" type="submit">Update Question</button>
                     </div>
                 </form>
             </h5>
