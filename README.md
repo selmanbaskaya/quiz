@@ -8,7 +8,11 @@
 </p>
 
 ## Project
-![](add-question.gif)
+### Add Quiz
+![](add-quiz.gif)
+
+### Add & Update Question
+![](add-update-question.gif)
 
 ## Install the dependencies
 ```bash
