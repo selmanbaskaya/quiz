@@ -5,16 +5,10 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title float-right">
+            <h5 class="card-title">
                 <a href="{{ route('quizzes.create') }}" class="btn btn-sm btn-info">
                     <i class="fa fa-plus"></i>
                     Add Quiz
-                </a>
-            </h5>
-            <h5 class="card-title">
-                <a href="{{ route('quizzes.index') }}" class="btn btn-sm btn-secondary text-white">
-                    <i class="fa fa-arrow-left"></i>
-                    Return to Quizzes
                 </a>
             </h5>
             <table class="table table-bordered mt-4">
