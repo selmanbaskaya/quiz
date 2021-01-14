@@ -9,7 +9,7 @@
 
 ## Project
 ### Add Quiz
-![](add-quiz.gif)
+![](add-quiz-u.gif)
 
 ### Add & Update Question
 ![](add-update-question.gif)
