@@ -10,6 +10,13 @@
                     @method('PUT')
                     @csrf
                     <div class="form-group">
+                        <label>Quiz Status</label>
+                        <select name="status" class="form-control">
+                            <option @if($quiz->status === 'Publish') selected @endif @if($quiz->questions_count < 5 ) disabled @endif value="Published">Publish</option>
+                            <option @if($quiz->status === 'Draft') selected @endif value="Draft">Draft</option>
+                            <option @if($quiz->status === 'Passive') selected @endif value="Passive">Passive</option>
+                        </select>                    </div>
+                    <div class="form-group">
                         <label>Quiz Title</label>
                         <input type="text" name="title" value="{{ $quiz->title }}" class="form-control">
                     </div>
