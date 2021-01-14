@@ -44,7 +44,7 @@
                             <a href="{{ route('questions.edit', [$quiz->id, $question->id, ]) }}" class="btn btn-sm btn-warning text-white">
                                 <i class="fa fa-pen"></i>    
                             </a>    
-                            <a href="{{ route('quizzes.destroy', $question->id) }}" class="btn btn-sm btn-danger">
+                            <a href="{{ route('questions.destroy', [$quiz->id, $question->id, ]) }}" class="btn btn-sm btn-danger">
                                 <i class="fa fa-times"></i>    
                             </a>    
                         </td>
