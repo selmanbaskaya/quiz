@@ -11,6 +11,9 @@
 ### Add Quiz
 ![](add-quiz-u.gif)
 
+### Quiz Query Filter
+![](query-filter.gif)
+
 ### Add & Update Question
 ![](add-update-question.gif)
 
