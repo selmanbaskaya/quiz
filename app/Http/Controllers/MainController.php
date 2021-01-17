@@ -11,4 +11,10 @@ class MainController extends Controller
         $quizzes = Quiz::where('status', 'published')->withCount('questions')->paginate(5);
         return view('dashboard', compact('quizzes'));
     }
+
+    public function quizDetail($slug) {
+        $quiz = Quiz::whereSlug($slug)->first() ?? abort(404, 'Quiz Not Found!');
+
+        return view('quiz-detail', compact('quiz'));
+    }
 }
