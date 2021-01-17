@@ -15,7 +15,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('panel', [MainController::class, 'dashboard'])->name('dashboard');
-    Route::get('quiz/{id}', [MainController::class, 'quizDetail'])->name('quiz.detail');
+    Route::get('quiz/detail/{id}', [MainController::class, 'quizDetail'])->name('quiz.detail');
+    Route::get('quiz/{id}', [MainController::class, 'quiz'])->name('quiz.join');
 });
 
 Route::group([

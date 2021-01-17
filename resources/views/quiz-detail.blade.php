@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         {{ $quiz->description }}
-                        <a href="#" class="card-link btn btn-info btn-sm btn-block">Start the Quiz</a>
+                        <a href="{{ route('quiz.join', $quiz->slug) }}" class="card-link btn btn-info btn-sm btn-block">Start the Quiz</a>
                     </div>
                     <div class="col-md-4 div-sm-12">
                         <ul class="list-group">

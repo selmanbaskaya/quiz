@@ -9,7 +9,14 @@ class MainController extends Controller
 {
     public function dashboard() {
         $quizzes = Quiz::where('status', 'published')->withCount('questions')->paginate(5);
+        
         return view('dashboard', compact('quizzes'));
+    }
+
+    public function quiz($slug) {
+        $quiz = Quiz::whereSlug($slug)->with('questions')->first();
+
+        return view('quiz', compact('quiz'));
     }
 
     public function quizDetail($slug) {
