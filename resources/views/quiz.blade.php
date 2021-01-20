@@ -5,7 +5,8 @@
 
     <div class="card">
         <div class="card-body">
-                <form method="POST" action="#">
+                <form method="POST" action="{{ route('quiz.result', $quiz->slug) }}">
+                    @csrf
                     @foreach ($quiz->questions as $question)
                         @if($question->image)
                             <img src="{{ asset($question->image) }}" width="40%" class="img-responsive rounded mb-2 mt-2">
