@@ -22,7 +22,7 @@ class MainController extends Controller
     }
 
     public function quizDetail($slug) {
-        $quiz = Quiz::whereSlug($slug)->first() ?? abort(404, 'Quiz Not Found!');
+        $quiz = Quiz::whereSlug($slug)->with('myResult', 'results')->withCount('questions')->first() ?? abort(404, 'Quiz Not Found!');
 
         return view('quiz-detail', compact('quiz'));
     }
@@ -32,6 +32,10 @@ class MainController extends Controller
         $correct_point = 0;
         $wrong_point = 0;
         $point = 0;
+
+        if ($quiz->myResult) {
+            abort(404, 'You have participated before!');
+        }
 
         foreach($quiz->questions as $question) {
            Answer::create([
