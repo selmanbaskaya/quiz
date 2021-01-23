@@ -42,6 +42,10 @@ class Quiz extends Model
 
         return null;
     }
+    
+    public function topTenUser() {
+        return $this->results()->orderByDesc('point')->take(10);
+    }
 
     /**
     * Return the sluggable configuration array for this model.
