@@ -16,7 +16,11 @@ class MainController extends Controller
     }
 
     public function quiz($slug) {
-        $quiz = Quiz::whereSlug($slug)->with('questions')->first();
+        $quiz = Quiz::whereSlug($slug)->with('questions.myAnswer')->first();
+
+        if($quiz->myResult) {
+            return view('quiz-result', compact('quiz'));
+        }
 
         return view('quiz', compact('quiz'));
     }
@@ -28,7 +32,7 @@ class MainController extends Controller
     }
 
     public function result(Request $request, $slug) {
-        $quiz = Quiz::with('questions')->whereSlug($slug)->first() ?? abort(404, 'Quiz doesnt exist');
+       $quiz = Quiz::with('questions')->whereSlug($slug)->first() ?? abort(404, 'Quiz doesnt exist');
         $correct_point = 0;
         $wrong_point = 0;
         $point = 0;

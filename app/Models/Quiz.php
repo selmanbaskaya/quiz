@@ -14,7 +14,7 @@ class Quiz extends Model
 
     protected $fillable = ['title', 'description', 'slug', 'status', 'finished_at'];
     protected $dates = ['finished_at'];
-    protected $appends = ['details'];
+    protected $appends = ['details', 'my_rank'];
 
     public function getFinishedAtAttributes($date) {
         return $date ? Carbon::parse($date) : null;
@@ -45,6 +45,17 @@ class Quiz extends Model
     
     public function topTenUser() {
         return $this->results()->orderByDesc('point')->take(10);
+    }
+
+    public function getMyRankAttribute() {
+        $rank = 0;
+
+        foreach($this->results()->orderByDesc('point')->get() as $result) {
+            $rank += 1;
+            if(auth()->user()->id == $result->user_id) {
+                return $rank;
+            }
+        }
     }
 
     /**
