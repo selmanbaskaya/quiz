@@ -25,7 +25,7 @@ class QuizController extends Controller
         if(request()->get('status')) {
             $quizzes = $quizzes->where('status', request()->get('status'));
         }
-        
+
         $quizzes = $quizzes->paginate(5);
         return view('admin.quiz.list', compact('quizzes'));
     }
@@ -60,7 +60,9 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        //
+        $quiz = Quiz::with('topTenUser.user', 'results')->withCount('questions')->find($id) ?? abort(404, 'Quiz Not Found!');
+
+        return view('admin.quiz.show', compact('quiz'));
     }
 
     /**

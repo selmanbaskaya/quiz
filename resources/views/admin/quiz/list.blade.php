@@ -52,7 +52,14 @@
                                     <span class="badge badge-warning text-white">{{ $quiz->status }}</span>
                                     @break
                                 @case('Published')
-                                    <span class="badge badge-success">{{ $quiz->status }}</span>
+                                    @if(!$quiz->finished_at)
+                                        <span class="badge badge-success">{{ $quiz->status }}</span>
+                                    @elseif($quiz->finished_at > now())
+                                        <span class="badge badge-success">{{ $quiz->status }}</span>
+                                    @else
+                                        <span class="badge badge-success">Quiz Expired</span>
+                                    @endif
+
                                     @break
                                 @case('Passive')
                                     <span class="badge badge-danger">{{ $quiz->status }}</span>
@@ -65,15 +72,18 @@
                             </span>
                         </td>
                         <td scope="row" class="text-center">
+                            <a href="{{ route('quizzes.details', $quiz->id) }}" class="btn btn-sm btn-dark text-white">
+                                <i class="fa fa-info-circle"> </i>
+                            </a>
                             <a href="{{ route('questions.index', $quiz->id) }}" class="btn btn-sm btn-success">
-                                <i class="fa fa-question"></i>    
-                            </a>    
+                                <i class="fa fa-question"></i>
+                            </a>
                             <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-sm btn-warning text-white">
-                                <i class="fa fa-pen"></i>    
-                            </a>    
+                                <i class="fa fa-pen"></i>
+                            </a>
                             <a href="{{ route('quizzes.destroy', $quiz->id) }}" class="btn btn-sm btn-danger">
-                                <i class="fa fa-times"></i>    
-                            </a>    
+                                <i class="fa fa-times"></i>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

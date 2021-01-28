@@ -6,10 +6,12 @@
     <div class="card">
         <div class="card-body">
             <div class="alert alert-primary">
-                <i class="fa fa-check text-success"> Correct Answer</i> | 
+                <i class="fa fa-check text-success"> Correct Answer</i> |
                 <i class="fa fa-square text-danger"> Your Answer</i>
             </div>
-
+            <div class="alert alert-info">
+                <h4>Your score: {{ $quiz->myResult->point }}</h4>
+            </div>
                     @foreach ($quiz->questions as $question)
                         @if($question->image)
                             <img src="{{ asset($question->image) }}" width="40%" class="img-responsive rounded mb-2 mt-2">
@@ -20,12 +22,14 @@
                         <i class="fa fa-times text-danger"></i>
                         @endif
                         <strong>
-                            Question {{ $loop->iteration }}: 
+                            Question {{ $loop->iteration }}:
                         </strong>
                         {{ $question->question }}
+                        <br>
+                            <small><strong>{{ $question->true_percent }}%</strong> answered this question correctly!</small>
                         <div class="form-check">
                             <label class="form-check-label" for="quiz{{ $question->id }}1">
-                            {{ $question->answer_1 }}
+                            A) {{ $question->answer_1 }}
                             </label>
                             @if('answer_1' == $question->correct_answer)
                             <i class="fa fa-check text-success"></i>
@@ -35,7 +39,7 @@
                         </div>
                         <div class="form-check">
                             <label class="form-check-label" for="quiz{{ $question->id }}2">
-                            {{ $question->answer_2 }}
+                            B) {{ $question->answer_2 }}
                             </label>
                             @if('answer_2' == $question->correct_answer)
                             <i class="fa fa-check text-success"></i>
@@ -45,7 +49,7 @@
                         </div>
                         <div class="form-check">
                             <label class="form-check-label" for="quiz{{ $question->id }}3">
-                            {{ $question->answer_3 }}
+                            C) {{ $question->answer_3 }}
                             </label>
                             @if('answer_3' == $question->correct_answer)
                             <i class="fa fa-check text-success"></i>
@@ -55,7 +59,7 @@
                         </div>
                         <div class="form-check">
                             <label class="form-check-label" for="quiz{{ $question->id }}4">
-                            {{ $question->answer_4 }}
+                            D) {{ $question->answer_4 }}
                             </label>
                             @if('answer_4' == $question->correct_answer)
                             <i class="fa fa-check text-success"></i>

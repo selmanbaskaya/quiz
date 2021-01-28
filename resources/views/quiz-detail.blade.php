@@ -15,9 +15,13 @@
                         {{ $quiz->description }}
                       </div>
                     </div>
-
-                        <a href="{{ route('quiz.join', $quiz->slug) }}" class="card-link mt-3 btn btn-info btn-sm btn-block">Start the Quiz</a>
-
+                        @if($quiz->myResult)
+                            <a href="{{ route('quiz.join', $quiz->slug) }}" class="card-link mt-3 btn btn-info btn-sm btn-block">See Answers</a>
+                        @elseif($quiz->finished_at > now())
+                            <a href="{{ route('quiz.join', $quiz->slug) }}" class="card-link mt-3 btn btn-info btn-sm btn-block">Quiz Expired</a>
+                        @else
+                            <a href="{{ route('quiz.join', $quiz->slug) }}" class="card-link mt-3 btn btn-info btn-sm btn-block">Start the Quiz</a>
+                        @endif
                      </div>
                     <div class="col-md-4 div-sm-12">
                       <div class="card">
@@ -74,7 +78,7 @@
                               <ul class="list-group">
                                 @foreach ($quiz->topTenUser as $result)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <strong>{{ $loop->iteration }}.</strong> 
+                                    <strong>{{ $loop->iteration }}.</strong>
                                     <img src="{{ $result->user->profile_photo_url }}" class="w-10 h-10 rounded-full">
                                     <span @if(auth()->user()->id == $result->user_id) class="text-success" @endif >{{ $result->user->name }} </span>
                                     <span class="badge badge-success badge-pill">{{ $result->point }}</span>
@@ -86,9 +90,9 @@
                           @endif
                     </div>
                 </div>
-                
+
             </p>
-            
+
         </div>
     </div>
 </x-app-layout>

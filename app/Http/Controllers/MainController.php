@@ -10,13 +10,16 @@ use App\Models\Result;
 class MainController extends Controller
 {
     public function dashboard() {
-        $quizzes = Quiz::where('status', 'published')->withCount('questions')->paginate(5);
-        
-        return view('dashboard', compact('quizzes'));
+        $quizzes = Quiz::where('status', 'published')->where(function ($query) {
+            $query->whereNull('finished_at')->orWhere('finished_at', '>', now());
+        })->withCount('questions')->paginate(5);
+        $results = auth()->user()->results;
+
+        return view('dashboard', compact('quizzes', 'results'));
     }
 
     public function quiz($slug) {
-        $quiz = Quiz::whereSlug($slug)->with('questions.myAnswer')->first();
+        $quiz = Quiz::whereSlug($slug)->with('questions.myAnswer', 'myResult')->first();
 
         if($quiz->myResult) {
             return view('quiz-result', compact('quiz'));
